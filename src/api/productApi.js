@@ -15,6 +15,7 @@ const productApi = {
     const count = await axiosClient.get("/products/count", {
       params: newParams,
     });
+    console.log(newParams);
     // Build response and return
     return {
       data: productList,

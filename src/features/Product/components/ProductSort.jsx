@@ -15,12 +15,7 @@ function ProductSort({ currentSort, onChange }) {
     }
   };
   return (
-    <Tabs
-      value={currentSort}
-      indicatorColor="primary"
-      textColor="primary"
-      onChange={handleSortChange}
-    >
+    <Tabs value={currentSort} indicatorColor="primary" textColor="primary" onChange={handleSortChange}>
       <Tab label="Gia thấp tới cao" value="salePrice:ASC,id:ASC"></Tab>
       <Tab label="Gia cao tới thấp" value="salePrice:DESC,id:DESC"></Tab>
     </Tabs>

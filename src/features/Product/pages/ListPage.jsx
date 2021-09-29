@@ -73,7 +73,7 @@ function ListPage(props) {
     (async () => {
       try {
         const { data, pagination } = await productApi.getAll(queryParams);
-        console.log(data.name, pagination);
+        console.log(data, pagination);
         setProductList(data);
         setPagination(pagination);
       } catch (error) {
@@ -107,6 +107,7 @@ function ListPage(props) {
       ...queryParams,
       _sort: newSort,
     };
+    console.log(filters._sort);
     history.push({
       pathname: history.location.pathname,
       search: queryString.stringify(filters),
@@ -140,20 +141,12 @@ function ListPage(props) {
         <Grid container spacing={1}>
           <Grid item className={classes.left}>
             <Paper elevation={0}>
-              {loading ? (
-                <SkeletonCategory length={7} />
-              ) : (
-                <ProductFilters filters={queryParams} onChange={handelFiltersChange} />
-              )}
+              {loading ? <SkeletonCategory length={9} /> : <ProductFilters filters={queryParams} onChange={handelFiltersChange} />}
             </Paper>
           </Grid>
           <Grid item className={classes.right}>
             <Paper elevation={0}>
-              {loading ? (
-                <ShortSkeleton />
-              ) : (
-                <ProductSort currentSort={queryParams._sort} onChange={handleSortChange} />
-              )}
+              {loading ? <ShortSkeleton /> : <ProductSort currentSort={queryParams._sort} onChange={handleSortChange} />}
               <FilterViewer filters={queryParams} onChange={setNewFilters} />
 
               {loading ? <ProductSkeletonList length={9} /> : <ProductList data={productList} />}

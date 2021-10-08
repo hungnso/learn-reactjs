@@ -15,6 +15,7 @@ function Register(props) {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (value) => {
+    console.log(value);
     try {
       value.username = value.email;
 

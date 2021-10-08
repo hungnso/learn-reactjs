@@ -60,6 +60,7 @@ export default function Header() {
     setOpen(false);
   };
   const handleUseClick = (event) => {
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleCloseMenu = () => {
@@ -78,7 +79,7 @@ export default function Header() {
         <Toolbar>
           <CodeIcon className={classes.menuButton} />
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" className={classes.link}>
+            <Link to="/products" className={classes.link}>
               {" "}
               Test Code
             </Link>
@@ -147,10 +148,7 @@ export default function Header() {
                 <Login closeDialog={handleClose} />
 
                 <Box textAlign="center">
-                  <Button
-                    color="primary"
-                    onClick={() => setMode(MODE.REGISTER)}
-                  >
+                  <Button color="primary" onClick={() => setMode(MODE.REGISTER)}>
                     Go to the Register
                   </Button>
                 </Box>

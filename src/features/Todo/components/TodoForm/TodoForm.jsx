@@ -12,10 +12,7 @@ TodoForm.propTypes = {
 
 function TodoForm(props) {
   const schema = yup.object().shape({
-    title: yup
-      .string()
-      .required("Plese enter title")
-      .min(5, "Hay nhap tren 5 ky tu "),
+    title: yup.string().required("Plese enter title").min(5, "Hay nhap tren 5 ky tu "),
   });
   const form = useForm({
     defaultValues: {

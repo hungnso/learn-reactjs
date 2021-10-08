@@ -72,9 +72,7 @@ function Listpage(props) {
     });
   };
 
-  const renderedTodoList = todoList.filter(
-    (todo) => filteredStatus === "all" || filteredStatus === todo.status
-  );
+  const renderedTodoList = todoList.filter((todo) => filteredStatus === "all" || filteredStatus === todo.status);
   console.log(renderedTodoList);
 
   const handelSunmit = (values) => {

@@ -5,6 +5,7 @@ import StorageKeys from "../../constants/storage-key";
 export const register = createAsyncThunk("users/register", async (payload) => {
   // call Api to register
   const data = await userApi.register(payload);
+  console.log(data.user);
   // save data to local storage
   localStorage.setItem(StorageKeys.TOKEN, data.jwt);
   localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user));

@@ -1,4 +1,4 @@
-import { Box, IconButton, MenuItem, Menu } from "@material-ui/core";
+import { Box, IconButton, MenuItem, Menu, Badge } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -7,14 +7,16 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { AccountCircle, Close } from "@material-ui/icons";
+import { AccountCircle, Close, ShoppingCart } from "@material-ui/icons";
 import CodeIcon from "@material-ui/icons/Code";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import Login from "../../features/Auth/components/Login";
 import Register from "../../features/Auth/components/Register";
 import { logout } from "../../features/Auth/userSlice";
+import { cartItemsCountSlector } from "../../features/Cart/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,10 +46,11 @@ const MODE = {
 };
 export default function Header() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const loggesInUser = useSelector((state) => state.user.current.id);
-  console.log(loggesInUser);
+  // console.log(loggesInUser);
   const isLoggedIn = !!loggesInUser;
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   const [mode, setMode] = useState(MODE.LOGIN);
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -71,7 +74,11 @@ export default function Header() {
     const action = logout();
     dispatch(action);
   };
+  const handleClickCart = () => {
+    history.push("/cart");
+  };
   const classes = useStyles();
+  const cartItemsCount = useSelector(cartItemsCountSlector);
 
   return (
     <div className={classes.root}>
@@ -101,6 +108,11 @@ export default function Header() {
               Login
             </Button>
           )}
+          <IconButton size="medium" aria-label="show 4 new mails" color="inherit" onClick={handleClickCart}>
+            <Badge badgeContent={cartItemsCount} color="error">
+              <ShoppingCart />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Menu
@@ -121,13 +133,7 @@ export default function Header() {
         <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
-      <Dialog
-        disableEscapeKeyDown
-        disableBackdropClick
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
+      <Dialog disableEscapeKeyDown open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <IconButton className={classes.closeButton} onClick={handleClose}>
           <Close />
         </IconButton>

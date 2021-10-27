@@ -42,7 +42,7 @@ function ListPage(props) {
       ...params,
       _page: Number.parseInt(params._page) || 1,
       _limit: Number.parseInt(params._limit) || 9,
-      _sort: Number.parseInt(params._sort) || "salePrice:ASC,id:ASC",
+      _sort: params._sort || "salePrice:ASC,id:ASC",
       isPromotion: params.isPromotion === "true",
       isFreeShip: params.isFreeShip === "true",
     };
@@ -73,7 +73,7 @@ function ListPage(props) {
     (async () => {
       try {
         const { data, pagination } = await productApi.getAll(queryParams);
-        console.log(data, pagination);
+        // console.log(data, pagination);
         setProductList(data);
         setPagination(pagination);
       } catch (error) {
@@ -99,6 +99,7 @@ function ListPage(props) {
     });
   };
   const handleSortChange = (newSort) => {
+    console.log(newSort);
     // setFilter((prevFilter) => ({
     //   ...prevFilter,
     //   _sort: newSort,

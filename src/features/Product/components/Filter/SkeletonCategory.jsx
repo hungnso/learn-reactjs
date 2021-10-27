@@ -15,7 +15,7 @@ function SkeletonCategory({ length }) {
   return (
     <Box>
       <Box padding={1}>
-        <Skeleton variant="react" width="100%" />
+        <Skeleton variant="rect" width="100%" />
       </Box>
       <Grid container>
         {Array.from(new Array(length)).map((x, index) => (

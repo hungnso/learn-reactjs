@@ -12,10 +12,10 @@ function ShortSkeleton(props) {
         <Grid container padding={1}>
           <Grid item xs={6} sm={6} md={6} lg={3}>
             {" "}
-            <Skeleton variant="react" width="100%" />
+            <Skeleton variant="rect" width="100%" />
           </Grid>
           <Grid item xs={6} sm={6} md={6} lg={3}>
-            <Skeleton variant="react" width="100%" />
+            <Skeleton variant="rect" width="100%" />
           </Grid>
         </Grid>
       </Box>

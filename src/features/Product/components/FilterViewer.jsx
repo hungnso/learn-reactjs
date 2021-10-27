@@ -56,8 +56,7 @@ const FILTER_LIST = [
     id: 3,
     getLabel: (filters) => `Từ ${filters.salePrice_gte} đến ${filters.salePrice_lte}`,
     isActive: () => true,
-    isVisible: (filters) =>
-      Object.keys(filters).includes("salePrice_gte") && Object.keys(filters).includes("salePrice_lte"),
+    isVisible: (filters) => Object.keys(filters).includes("salePrice_gte") && Object.keys(filters).includes("salePrice_lte"),
     isRemovable: true,
     onRemove: (filters) => {
       const newFilter = { ...filters };

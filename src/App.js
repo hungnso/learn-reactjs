@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import ColorBox from "./components/ColorBox/ColorBox";
 import Header from "./components/Header/Header";
+import CartFeatuer from "./features/Cart";
 import ProductFeature from "./features/Product";
 import TodoFeature from "./features/Todo";
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/todos" component={TodoFeature} exact />
         <Route path="/colorboxs" component={ColorBox} exact />
         <Route path="/products" component={ProductFeature} />
+        <Route path="/cart" component={CartFeatuer} />
       </Switch>
     </div>
   );
